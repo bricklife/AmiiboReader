@@ -12,7 +12,7 @@ import CoreNFC
     
     private var readerSession: NFCTagReaderSession?
     
-    @Published var amiibo: Amiibo?
+    @Published private(set) var amiibo: Amiibo?
     
     func scan() {
         guard NFCTagReaderSession.readingAvailable else {
@@ -25,11 +25,11 @@ import CoreNFC
         readerSession?.begin()
     }
     
-    func resetAmiibo() {
+    func reset() {
         self.amiibo = nil
     }
     
-    func updateAmiibo(_ amiibo: Amiibo) {
+    private func update(amiibo: Amiibo) {
         self.amiibo = amiibo
     }
 }
@@ -67,7 +67,7 @@ extension ViewModel: NFCTagReaderSessionDelegate {
                 let apiResponse = try await AmiiboAPI.request(head: head, tail: tail)
                 
                 if let amiibo = apiResponse.amiibo.first {
-                    await updateAmiibo(amiibo)
+                    await update(amiibo: amiibo)
                 }
                 
                 session.invalidate()

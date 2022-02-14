@@ -24,7 +24,7 @@ struct ContentView: View {
         }
         
         Button("Scan") {
-            viewModel.resetAmiibo()
+            viewModel.reset()
             viewModel.scan()
         }
         .padding()
