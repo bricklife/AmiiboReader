@@ -16,12 +16,12 @@ import CoreNFC
     
     func scan() {
         guard NFCTagReaderSession.readingAvailable else {
-            print("Not Supported")
+            print("Not supported")
             return
         }
         
         self.readerSession = NFCTagReaderSession(pollingOption: [.iso14443], delegate: self, queue: nil)
-        readerSession?.alertMessage = "amiiboを近づけてください"
+        readerSession?.alertMessage = "Hold your device near your amiibo."
         readerSession?.begin()
     }
     
@@ -48,7 +48,7 @@ extension ViewModel: NFCTagReaderSessionDelegate {
         print(#function, tags)
         
         guard let tag = tags.first, case .miFare(let mifare) = tag else {
-            session.alertMessage = "amiiboが見つかりませんでした"
+            session.alertMessage = "Not found."
             return
         }
         

@@ -23,7 +23,7 @@ struct ContentView: View {
             .padding()
         }
         
-        Button("読み込み") {
+        Button("Scan") {
             viewModel.resetAmiibo()
             viewModel.scan()
         }
