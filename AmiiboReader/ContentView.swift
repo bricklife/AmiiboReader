@@ -12,14 +12,19 @@ struct ContentView: View {
     @StateObject var viewModel = ViewModel()
     
     var body: some View {
-        if let amiiboData = viewModel.amiiboData {
-            Text("UID: " + amiiboData.uid.hexString)
-            Text("head: " + amiiboData.head.hexString)
-            Text("tail: " + amiiboData.tail.hexString)
+        if let amiibo = viewModel.amiibo {
+            Text(amiibo.name)
+            AsyncImage(url: amiibo.image) { image in
+                image.resizable()
+            } placeholder: {
+                ProgressView()
+            }
+            .scaledToFit()
+            .padding()
         }
         
         Button("読み込み") {
-            viewModel.resetAmiiboData()
+            viewModel.resetAmiibo()
             viewModel.scan()
         }
         .padding()

@@ -12,6 +12,7 @@
 		CB3A730E27BA04D000292902 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB3A730D27BA04D000292902 /* Assets.xcassets */; };
 		CB3A731127BA04D000292902 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB3A731027BA04D000292902 /* Preview Assets.xcassets */; };
 		CB3A731927BA052700292902 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A731827BA052700292902 /* ViewModel.swift */; };
+		CB3A731D27BA235000292902 /* AmiiboAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A731C27BA235000292902 /* AmiiboAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		CB3A731027BA04D000292902 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CB3A731727BA04F600292902 /* AmiiboReader.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AmiiboReader.entitlements; sourceTree = "<group>"; };
 		CB3A731827BA052700292902 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		CB3A731C27BA235000292902 /* AmiiboAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmiiboAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 				CB3A730927BA04CF00292902 /* AmiiboReaderApp.swift */,
 				CB3A730B27BA04CF00292902 /* ContentView.swift */,
 				CB3A731827BA052700292902 /* ViewModel.swift */,
+				CB3A731C27BA235000292902 /* AmiiboAPI.swift */,
 				CB3A730D27BA04D000292902 /* Assets.xcassets */,
 				CB3A730F27BA04D000292902 /* Preview Content */,
 			);
@@ -143,6 +146,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB3A730C27BA04CF00292902 /* ContentView.swift in Sources */,
+				CB3A731D27BA235000292902 /* AmiiboAPI.swift in Sources */,
 				CB3A731927BA052700292902 /* ViewModel.swift in Sources */,
 				CB3A730A27BA04CF00292902 /* AmiiboReaderApp.swift in Sources */,
 			);

@@ -8,23 +8,11 @@
 import Foundation
 import CoreNFC
 
-struct AmiiboData {
-    let uid: Data
-    let head: Data
-    let tail: Data
-}
-
-extension Data {
-    public var hexString: String {
-        return map { String(format: "%02x", $0) }.joined(separator: "")
-    }
-}
-
 @MainActor class ViewModel: NSObject, ObservableObject {
     
     private var readerSession: NFCTagReaderSession?
     
-    @Published var amiiboData: AmiiboData?
+    @Published var amiibo: Amiibo?
     
     func scan() {
         guard NFCTagReaderSession.readingAvailable else {
@@ -37,12 +25,12 @@ extension Data {
         readerSession?.begin()
     }
     
-    func resetAmiiboData() {
-        self.amiiboData = nil
+    func resetAmiibo() {
+        self.amiibo = nil
     }
     
-    func updateAmiiboData(uid: Data, head: Data, tail: Data) {
-        self.amiiboData = AmiiboData(uid: uid, head: head, tail: tail)
+    func updateAmiibo(_ amiibo: Amiibo) {
+        self.amiibo = amiibo
     }
 }
 
@@ -76,7 +64,11 @@ extension ViewModel: NFCTagReaderSessionDelegate {
                 // READ(0x30) at Page 22
                 let tail = try await mifare.sendMiFareCommand(commandPacket: Data([0x30, 22])).prefix(4)
                 
-                await updateAmiiboData(uid: mifare.identifier, head: head, tail: tail)
+                let apiResponse = try await AmiiboAPI.request(head: head, tail: tail)
+                
+                if let amiibo = apiResponse.amiibo.first {
+                    await updateAmiibo(amiibo)
+                }
                 
                 session.invalidate()
             } catch {
